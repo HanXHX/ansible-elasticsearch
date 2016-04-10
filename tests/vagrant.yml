@@ -1,0 +1,9 @@
+---
+
+- hosts: all 
+  user: vagrant
+  become: yes
+  vars:
+    elasticsearch_network_host: '0.0.0.0'
+  roles:
+    - ../..

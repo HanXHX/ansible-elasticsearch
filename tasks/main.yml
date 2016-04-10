@@ -1,0 +1,17 @@
+---
+
+- name: APT | Update cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: INCLUDE | upstream
+  include: upstream.yml
+  when: elasticsearch_use_upstream
+
+- name: INCLUDE | Install
+  include: install.yml
+
+- name: TEMPLATE | Deploy configuration
+  template: >
+    src=etc/elasticsearch/elasticsearch.yml.j2
+    dest=/etc/elasticsearch/elasticsearch.yml
+  notify: restart elasticsearch

@@ -1,0 +1,10 @@
+---
+
+- name: APT | Install Elasticsearch
+  apt: pkg=elasticsearch state=present
+
+- name: SERVICE | Ensure Elasticsearch is started and enabled
+  service: >
+    name=elasticsearch
+    state=started
+    enabled=yes
